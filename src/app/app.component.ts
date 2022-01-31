@@ -36,11 +36,15 @@ export class AppComponent implements OnInit{
 
   // {[s: string]: boolean} clé->valeur
   forbiddenNamesValidator(control: FormControl): {[s: string]: boolean} {
-    if(this.forbiddenNames.indexOf(control.value) !== -1) {
+    if(this.isInForbiddenNames(control.value)) {
       return {'nameIsForbidden': true};
     }
 
     return null;
+  }
+
+  isInForbiddenNames(name: string): boolean {
+    return this.forbiddenNames.indexOf(name) !== -1;
   }
 
   get hobbies(): FormArray {
